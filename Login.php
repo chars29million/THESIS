@@ -1,36 +1,43 @@
 <?php
-$host = "localhost";
-$user = "root";
-$password = "";
-$db = "thesis";
+include 'DataContext/conn.php';
 
-
-$data = mysqli_connect($host, $user, $password, $db);
-if ($data === false) {
-
-  die("connection error");
-}
+$errorMsg = false;
+$error = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = $_POST["name"];
   $password = $_POST["pass"];
 
-  $sql = "SELECT * FROM tbl_user_info WHERE USERNAME = '" . $username . "' AND PASSWORD = '" . $password . "'";
+  $sql = "SELECT * FROM tbl_user_info WHERE USERNAME = ? AND PASSWORD = ? ";
+
+  $stmt = $connection->prepare($sql);
+
+  $stmt->bind_param("ss", $username, $password);
+
+  $stmt->execute();
+
+  $result = $stmt->get_result();
 
 
-  $result = mysqli_query($data, $sql);
+  $errorMsg = false;
 
-  $row = mysqli_fetch_array($result);
-
-  if ($row["USERTYPE"] == "user") {
-    $_SESSION["username"] = $username;
-    header("location:Dash-board.php");
-  } elseif ($row["USERTYPE"] == "admin") {
-    $_SESSION["username"] = $username;
-    header("location:Admin.php");
-  } else {
-    echo "username or password incorrect";
+  $row = $result->fetch_assoc();
+  
+  if ($row > 0) {
+      if ($row['USERTYPE'] == "user") {
+        $_SESSION["username"] = $username;
+        header("location:Dash-board.php");
+        return;
+      }
+      if ($row['USERTYPE'] == "admin") {
+        $_SESSION["username"] = $username;
+        header("location:Admin.php");
+        return;
+      }
   }
+
+  $errorMsg = true;
+  $error = "User does not exist!";
 }
 ?>
 
@@ -41,28 +48,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title></title>
+  <title>Login</title>
   <link rel="stylesheet" href="Loginstyle.css">
+
 </head>
 
 <body>
   <div class="container">
-    <form action="#" method="POST">
+    <form action="Login.php" method="POST">
 
       <h1>LOGIN</h1>
 
       <div class="input-box">
-        <input type="text" placeholder="Name" name="name" required>
+        <input type="text" placeholder="Name" name="name" required />
+
       </div>
 
-      <div class="input-box">
-        <input type="password" placeholder="Password" name="pass" required>
+      <div class="input-box ">
+        <input type="password" placeholder="Password" name="pass" required />
       </div>
 
       <div class="remember-forgot">
         <label><input type="checkbox">Remember me</label>
         <a href="#">Forgot Password?</a>
       </div>
+
+      <?php if ($errorMsg != false) { ?>
+          <p style="color: red;"><?php echo $error ?></p>
+        <?php } ?>
 
       <button type="submit" class="btn">Enter</button>
 

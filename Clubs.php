@@ -10,7 +10,7 @@ include("Dash-board.php");
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="stylesheet" href="Club-styles.css">
-  <title></title>
+  <title>Clubs</title>
 </head>
 
 <body>
