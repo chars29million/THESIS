@@ -1,0 +1,212 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Navigation List Css */
+body {
+  background-image: url(./images/aulogos.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.side-nav {
+  width: 250px;
+  height: 100%;
+  background: #02005f;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px 30px;
+}
+
+.user .logo .profile {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+}
+
+.nav-links {
+  list-style: none;
+  position: relative;
+}
+
+.nav-links li {
+  padding-top: 20px;
+  padding: 10px 0;
+}
+
+.nav-links p {
+  font-size: 18px;
+}
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links li a img {
+  margin-right: 20px;
+}
+
+.active {
+  background: white;
+  width: 100%;
+  height: 47px;
+  position: absolute;
+  left: 0;
+  top: 2.6%;
+  z-index: -1;
+  border-radius: 5px;
+  display: none;
+  transition: top 0.1s;
+}
+
+.nav-links li:hover a {
+  color: #02005f;
+  transition: 0.3s;
+}
+
+.nav-links li:hover ~ .active {
+  display: block;
+}
+
+.nav-links li:nth-child(1):hover ~ .active {
+  top: 2.6%;
+}
+
+.nav-links li:nth-child(2):hover ~ .active {
+  top: 19%;
+}
+
+.nav-links li:nth-child(3):hover ~ .active {
+  top: 35%;
+}
+
+.nav-links li:nth-child(4):hover ~ .active {
+  top: 51%;
+}
+
+.nav-links li:nth-child(5):hover ~ .active {
+  top: 68%;
+}
+
+.nav-links li:nth-child(6):hover ~ .active {
+  top: 85%;
+}
+
+/* Sign Out Button */
+.sign-out {
+  list-style: none;
+  position: relative;
+}
+
+.sign-out p {
+  font-size: 18px;
+}
+
+.sign-out li {
+  display: flex;
+  margin-top: 200px;
+  height: 50px;
+  transition: all ease 0.3s;
+}
+.sign-out li:hover {
+  color: #02005f;
+  background-color: white;
+  border-radius: 6px;
+}
+.sign-out li a {
+  color: #fff;
+  text-decoration: none;
+  /* padding: 10px 14px; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.sign-out li a img {
+  margin-right: 20px;
+}
+
+.sign-out li:hover a {
+  color: #02005f;
+}
+
+.sign-active {
+  transition: 0.5s;
+  background: rgb(255, 255, 255);
+  width: 100%;
+  height: 47px;
+  position: absolute;
+  left: 0;
+  top: 2.6%;
+  z-index: -1;
+  border-radius: 5px;
+  display: none;
+}
+
+.sign-out li:hover ~ .sign-active {
+  display: block;
+}
+
+/* Button Clubs 
+.container {
+  height: 200px;
+  width: 300px;
+  position: flex;
+  margin-left: 350px;
+  margin-top: 70px;
+}
+.container .btn{
+  border: none;
+  background-image: url(./images/usets.png);
+  position: flex;
+  margin-top: 0px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: 0.4s ease;
+}
+
+.btn:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.btn:active{
+  transform: scale(0.9);
+}
+
+.container-two{
+  height: 200px;
+  width: 300px;
+  position: flex;
+  margin-left: 800px;
+  margin-top: -200px;
+}
+
+.container-two .btn-two{
+  border: none;
+  background-image: url(./images/Supreme.png);
+  position: flex;
+  margin-top: 0px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: 0.4s ease;
+}
+
+.btn-two:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.btn-two:active{
+  transform: scale(0.9);
+}
+*/

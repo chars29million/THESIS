@@ -1,0 +1,82 @@
+.humms{
+  background-image: linear-gradient(to bottom right, rgb(255, 255, 255),rgb(255, 255, 42), rgb(196, 160, 0));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.humms-dp{
+  border-radius: 250px;
+  width: 50CM;
+  width: 250px;
+  margin-top: -130px;
+  margin-left: 260px;
+}
+
+h1{
+  padding-left: 380px;
+  color: rgb(0, 0, 0);
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 50px;
+  margin-left: 35px;
+  -webkit-text-stroke: 1px rgb(255, 255, 255);
+}
+
+.join-btn{
+  align-items: center;
+  margin-left: 530px;
+  margin-top: -110px;
+}
+
+button{
+  background-color: rgb(41, 196, 41);
+  font-size: 20px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+  color: white;
+  border-radius: 10px;
+  padding:20px 50px 20px 50px;
+  border: none;
+  transition: 0.3s;
+}
+
+button:hover{
+  cursor: pointer;
+  scale: 1.1;
+}
+
+button:active{
+  scale: 0.9;
+}
+
+.about{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  margin: 60px 50px 0 350px;
+}
+
+.description{
+  margin: 10px 50px 0 350px;
+}
+
+.posts{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin: 50px 50px -50px 350px;
+}
+
+.caption{
+  margin: 60px 50px 0 350px;
+}
+
+.sample{
+  margin: 0 0 0 350px;
+  width: 400px;
+}
+
+.sample2{
+  width: 400px;
+}
+
+.sample3{
+  margin: 0 0 0 350px;
+  width: 400px;
+}
