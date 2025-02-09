@@ -1,6 +1,12 @@
 <?php 
 include 'DataContext/conn.php';
 
+session_start();
+
+if (!isset($_SESSION['ID'])){ 
+  header("location:Login.php");
+  return;
+}
 
 $sql = "SELECT * FROM tbl_admin_info";
 $result = $connection->query($sql);
@@ -47,7 +53,7 @@ if (!$result) {
             <td><?php echo $row['UserName'] ?></td>
             <td>
               <a class='btn btn-primary btn-sm' href='edit.php?ID=<?php echo $row['ID'] ?>'>Edit </a>
-              <a class='btn btn-danger btn-sm' href='delete.php?ID=$row[ID]'>Delete</a>
+              <a class='btn btn-danger btn-sm' href='delete.php?ID=<?php echo $row['ID'] ?>'>Delete</a>
             </td>
           </tr>
         <?php } ?>

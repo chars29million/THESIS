@@ -1,28 +1,70 @@
 <?php
-include("Dash-board.php");
+include 'Dash-board.php'
 ?>
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="usetsstyle.css">
-    <title>
-
-    </title>
+    <link rel="stylesheet" href="usets-style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
+
   <body class="bg">
-    <form action="#">
     <div class="usets">
-      <h1>UNIFIED SOCIETY OF TECHVOC STUDENTS</h1>
+      <h1 class="HEADER">UNIFIED SOCIETY OF TECHVOC STUDENTS</h1>
     </div>
     <img src="./images/./usets/usets-circle-removebg-preview.png" class="usets-circle">
     
     <div class="join-btn">
-      <a href=""><button name="join">Join the Club</button></a>
+      <button id="btn">Join Club</button>
     </div>
-    
+
+    <div class="modal" id="Mymodal">
+
+      <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <form action="Submit">
+
+          <h1 class="Form-header">Please fill out this Form</h1>
+
+            <div class="Submit1">
+              <input type="text" placeholder="Position" name="position">
+            </div>
+        
+            <div class="Submit1">
+              <input type="text" placeholder="Strand and Section" name="stand-sec">
+            </div>
+            <br><br><br>
+
+            <div class="upload">
+              <input type="file" class="file">
+              <label for="file" class="labels">Upload your ID</label>
+            </div>
+
+        </form>
+      </div>
+    </div>
+
+    <script>
+      var modal = document.getElementById("Mymodal");
+
+      var button = document.getElementById("btn");
+
+      var span = document.getElementsByClassName("close")[0];
+
+      btn.onclick = function(){
+        modal.style.display = "block";
+      }
+
+      span.onclick = function(){
+        modal.style.display = "none";
+      }
+    </script>
+
     <h2 class="about">About us</h2>
     <p class="description">𝑮𝒓𝒆𝒆𝒕𝒊𝒏𝒈𝒔, 𝑪𝒉𝒊𝒆𝒇𝒔! We want to garner your attention and address the TVL students in particular!
 
@@ -53,6 +95,5 @@ We look forward to share this special occasion with you Chiefs! 🤍💙
     <a href="./images/./usets/photo3.jpg"><img src="./images/./usets/photo3.jpg" alt="" class="sample2"></a>
     <a href="./images/./usets/photo4.jpg"><img src="./images/./usets/photo4.jpg" alt="" class="sample3"></a>
     <a href="./images/./usets/photo5.jpg"><img src="./images/./usets/photo5.jpg" alt="" class="sample4"></a>
-    </form>
   </body>
 </html>

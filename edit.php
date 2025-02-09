@@ -1,40 +1,65 @@
 <?php
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $db = "thesis";
 
-// //connection
-// $connection = new mysqli($servername, $username, $password, $db);
-include 'DataContext/conn.php'; 
+include 'DataContext/conn.php';
+session_start();
 
-$id = "";
-$lastname = "";
-$fname = "";
-$mname = "";
-$userName = "";
+if (!isset($_SESSION['ID']) || $_SESSION['ID'] == ""){ 
+  header("location:Login.php");
+  return;
+}
 
-$errorMessage = "";
-$successMessage = "";
+if (!isPost()) {
+  $id = $_GET["ID"];
+  $errorMessage = "";
+  $successMessage = "";
 
+  //read the row of selected student
+  $sql = "SELECT * FROM tbl_admin_info WHERE ID = ?";
 
-$id = $_GET["ID"];
+  $stmt = $connection->prepare($sql);
 
-//read the row of selected student
-$sql = "SELECT * FROM tbl_admin_info WHERE ID= ?";
+  $stmt->bind_param("i", $id);
 
-$stmt = $connection->prepare($sql);
+  $stmt->execute();
 
-$stmt->bind_param("i", $id);
+  $result = $stmt->get_result();
 
-$stmt->execute();
+  $row = $result->fetch_assoc();
+}
 
-$result = $stmt->get_result();
+if (isPost()) {
 
-$row = $result->fetch_assoc();
+  $id = $_POST['ID'];
+  $lname = $_POST['lname'];
+  $fname = $_POST['fname'];
+  $mname = $_POST['mname'];
+  $uname = $_POST['uname'];
+  $pword = $_POST['pword'];
 
+  $updateQuery = "UPDATE tbl_admin_info SET LastName = ?, FirstName = ?, MiddleName = ?, UserName = ?, Password = ? WHERE ID = ?;";
 
+  $updateStmt = $connection->prepare($updateQuery);
 
+  $updateStmt->bind_param("sssssi", $lname, $fname, $mname, $uname, $pword, $id);
+
+  $updateStmt->execute();
+
+  header("location:Admin.php");
+  return;
+}
+
+function isPost()
+{
+  return $_SERVER["REQUEST_METHOD"] == "POST";
+}
+
+function isNull($param)
+{
+  if ($param == null || $param == "") {
+    return false;
+  }
+  return $param;
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,11 +89,11 @@ $row = $result->fetch_assoc();
     }
     ?>
     <form method="post" action="edit.php">
-      <input type="hidden" name="id" value="<?php echo $id; ?>">
+      <input type="hidden" name="ID" value="<?php echo $id; ?>">
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Last Name</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" name="lastname" value="<?php echo $row['LastName']; ?>">
+          <input type="text" class="form-control" name="lname" value="<?php echo $row['LastName']; ?>">
         </div>
       </div>
 
@@ -89,13 +114,13 @@ $row = $result->fetch_assoc();
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">User Name</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" name="userName" value="<?php echo $row['UserName']; ?>">
+          <input type="text" class="form-control" name="uname" value="<?php echo $row['UserName']; ?>">
         </div>
       </div>
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Password</label>
         <div class="col-sm-6">
-          <input type="password" class="form-control" name="password" value="<?php echo $row['Password']; ?>">
+          <input type="password" class="form-control" name="pword" value="<?php echo $row['Password']; ?>">
         </div>
       </div>
 

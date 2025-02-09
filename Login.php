@@ -1,8 +1,12 @@
 <?php
 include 'DataContext/conn.php';
 
+session_start();
+
 $errorMsg = false;
 $error = null;
+
+$_SESSION['ID'] = 0;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = $_POST["name"];
@@ -22,18 +26,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $errorMsg = false;
 
   $row = $result->fetch_assoc();
-  
+
   if ($row > 0) {
-      if ($row['USERTYPE'] == "user") {
-        $_SESSION["username"] = $username;
-        header("location:Dash-board.php");
-        return;
-      }
-      if ($row['USERTYPE'] == "admin") {
-        $_SESSION["username"] = $username;
-        header("location:Admin.php");
-        return;
-      }
+
+    $_SESSION['ID'] = $row['ID'];
+
+    if ($row['USERTYPE'] == "user") {
+      header("location:Dash-board.php");
+      return;
+    }
+    if ($row['USERTYPE'] == "admin") {
+      header("location:Admin.php");
+      return;
+    }
   }
 
   $errorMsg = true;
@@ -60,12 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <h1>LOGIN</h1>
 
       <div class="input-box">
-        <input type="text" placeholder="Name" name="name" required />
+        <input type="text" placeholder="Name" name="name" />
 
       </div>
 
       <div class="input-box ">
-        <input type="password" placeholder="Password" name="pass" required />
+        <input type="password" placeholder="Password" name="pass" />
       </div>
 
       <div class="remember-forgot">
@@ -74,8 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
 
       <?php if ($errorMsg != false) { ?>
-          <p style="color: red;"><?php echo $error ?></p>
-        <?php } ?>
+        <p style="color: red;"><?php echo $error ?></p>
+      <?php } ?>
 
       <button type="submit" class="btn">Enter</button>
 
