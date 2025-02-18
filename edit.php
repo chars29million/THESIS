@@ -3,7 +3,7 @@
 include 'DataContext/conn.php';
 session_start();
 
-if (!isset($_SESSION['ID']) || $_SESSION['ID'] == ""){ 
+if (!isset($_SESSION['ID']) || $_SESSION['ID'] == "") {
   header("location:Login.php");
   return;
 }

@@ -31,11 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $_SESSION['ID'] = $row['ID'];
 
-    if ($row['USERTYPE'] == "user") {
+    if ($row['UserType'] == "user") {
       header("location:Dash-board.php");
       return;
     }
-    if ($row['USERTYPE'] == "admin") {
+    if ($row['UserType'] == "admin") {
       header("location:Admin.php");
       return;
     }

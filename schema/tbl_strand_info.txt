@@ -1,0 +1,5 @@
+CREATE TABLE  tbl_strand_info( 
+    ID INT PRIMARY KEY AUTO_INCREMENT, 
+    StrandName VARCHAR(20) NOT NULL, 
+    IsActive INT DEFAULT 0
+ )

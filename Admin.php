@@ -1,19 +1,19 @@
-<?php 
+<?php
 include 'DataContext/conn.php';
 
 session_start();
 
-if (!isset($_SESSION['ID'])){ 
+if (!isset($_SESSION['ID']) || $_SESSION['ID'] == 0) {
   header("location:Login.php");
   return;
 }
 
-$sql = "SELECT * FROM tbl_admin_info";
-$result = $connection->query($sql);
+$sql = "SELECT tbl_admin_info.* FROM tbl_admin_info LEFT JOIN tbl_user_info User ON User.Admin_ID = tbl_admin_info.ID WHERE User.IsActive = 1";
+
+$result = $connection->query(query: $sql);
 
 if (!$result) {
   die("Invalid query: " . $connection->error);
-  exit();
 }
 
 ?>
@@ -32,7 +32,7 @@ if (!$result) {
 <body>
 
   <div class="container my-5">
-    <h2>List of Admin</h2>
+    <h2 class="text-center">List of Admin</h2>
     <a class="btn btn-primary" href="create.php" role="button">Add Admin</a>
     <br>
     <table class="table">
@@ -41,7 +41,8 @@ if (!$result) {
           <th>Last Name</th>
           <th>First Name</th>
           <th>Middle Name</th>
-          <th>Admin Number</th>
+          <th>Username</th>
+          <th>Department</th>
         </tr>
       </thead>
       <tbody>

@@ -2,11 +2,10 @@
 
 include 'DataContext/conn.php';
 
-if (isset($_GET["ID"])) {
+  
+  $id = $_GET["ID"];
 
-  $id = $_GET["ID"] ;
-
-  $sql = "DELETE FROM tbl_admin_info WHERE ID=?";
+  $sql = "UPDATE tbl_user_info SET IsActive = 0  WHERE Admin_ID = ?";
 
   $stmt = $connection->prepare($sql);
   
@@ -14,8 +13,7 @@ if (isset($_GET["ID"])) {
 
   $stmt->execute();
 
-}
+  header("location: Admin.php");
+  return;
 
-header("location: Admin.php");
-exit;
 ?>

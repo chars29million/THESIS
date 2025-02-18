@@ -1,54 +1,72 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db = "thesis";
+include 'DataContext/conn.php';
 
-//connection
-$connection = new mysqli($servername, $username, $password, $db);
+session_start();
 
+if (!isset($_SESSION['ID']) || $_SESSION['ID'] == 0) {
+  header("location:../../Login.php");
+  return;
+}
 
-$lastname = "";
+$lname = "";
 $fname = "";
 $mname = "";
-$userName = "";
+$uname = "";
+$pword = "";
+
 
 $errorMessage = "";
 $successMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $lastname = $_POST["lastname"];
   $fname = $_POST["fname"];
   $mname = $_POST["mname"];
-  $userName = $_POST["userName"];
+  $lname = $_POST["lname"];
+  $uname = $_POST["uname"];
+  $pword = $_POST["pword"];
 
-  do {
-    if (empty($lastname) || empty($fname) || empty($mname) || empty($userName)) {
-      $errorMessage = "All fields are required";
-      break;
-    }
+  // user type admin
+  $uType = "admin";
+  
+  // setting if the user is active
+  $active = 1;
 
-    //add new student to database
+  // validation if may laman 
+  if (empty($lname) || empty($fname)  || empty($uname) || empty($pword)) {
+    $errorMessage = "Fields are required";
+    return;
+  }
+  // for defining an admin, insert in tbl_admin_info 
+  $insertAdmin = "INSERT INTO tbl_admin_info (LastName, FirstName, MiddleName, UserName, Password) VALUES (?, ?, ?, ?, ?)";
+  
+  //prepare the statement for parameterize insertion 
+  $stmt = $connection->prepare($insertAdmin);
 
-    $insertQuery = "INSERT INTO tbl_admin_info(LastName,FirstName,MiddleName,UserName)
-                   VALUES ('$lastname','$fname','$mname','$userName')";
-    $result = $connection->query($insertQuery);
+  // bind parameter for fields 
+  $stmt->bind_param("sssss", $fname, $mname, $lname, $uname, $pword);
 
-    if (!$result) {
-      $errorMessage = "Invalid query: " . $connection->error;
-      break;
-    }
+  // execute to insert 
+  $stmt->execute();
 
-    $lastname = "";
-    $fname = "";
-    $mname = "";
-    $userName = "";
+  $result = $stmt->get_result();
 
-    $successMessage = "Admin added successfully!";
+  // getting the last id from tbl_admin_info 
+  $last_id = $connection->insert_id;
 
-    header("location:Admin.php");
-    exit;
-  } while (false);
+  // insert from 
+  $insertUser = "INSERT INTO tbl_user_info (UserName, Password, UserType, Admin_ID, IsActive)
+      VALUES (?, ?, ?, ?, ?)";
+
+  $pstmt = $connection->prepare($insertUser);
+
+  $pstmt->bind_param("sssii", $uname, $pword, $uType, $last_id, $active); 
+  $pstmt->execute();
+
+
+  $successMessage = "Admin added successfully!";
+
+  header("location:Admin.php");
+  exit;
 }
 ?>
 
@@ -59,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title></title>
+  <title>Create an Admin</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -83,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Last Name</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" name="lastname" value="<?php echo $lastname; ?>">
+          <input type="text" class="form-control" name="lname" value="<?php echo $lname; ?>">
         </div>
       </div>
 
@@ -104,10 +122,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">User Name</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" name="userName" value="<?php echo $userName; ?>">
+          <input type="text" class="form-control" name="uname" value="<?php echo $uname; ?>">
         </div>
       </div>
-
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Password</label>
+        <div class="col-sm-6">
+          <input type="password" class="form-control" name="pword" value="<?php echo $pword; ?>">
+        </div>
+      </div>
       <?php
       if (!empty($successMessage)) {
         echo "

@@ -1,0 +1,13 @@
+DROP TABLE tbl_user_info; 
+
+
+CREATE TABLE tbl_user_info ( 
+	ID INT PRIMARY KEY AUTO INCREMENT, 
+	UserName VARCHAR(20) NOT NULL UNIQUE,
+	Password VARCHAR(20) NOT NULL UNIQUE, 
+	Student_ID INT DEFAULT NULL, 
+	Admin_ID INT DEFAULT NULL, 
+ 	FOREIGN KEY (Student_ID) REFERENCE tbl_student_info(ID), 
+	FOREIGN KEY (Admin_ID) REFERENCE tbl_admin_info(ID)
+)
+	
