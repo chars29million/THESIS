@@ -40,8 +40,8 @@ $result = $connection->query($sql);
                     <tr>
                         <td><?php echo $row['StrandName'] ?></td>
                         <td>
-                            <a class='btn btn-primary btn-sm' href='edit.php?ID=<?php echo $row['ID'] ?>'>Edit </a>
-                            <a class='btn btn-danger btn-sm' href='delete.php?ID=<?php echo $row['ID'] ?>'>Delete</a>
+                            <a class='btn btn-primary btn-sm' href='Edit.php?ID=<?php echo $row['ID'] ?>'>Edit </a>
+                            <a class='btn btn-danger btn-sm' href='Delete.php?ID=<?php echo $row['ID'] ?>'>Delete</a>
                         </td>
 
                     </tr>

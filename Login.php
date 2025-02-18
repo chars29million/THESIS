@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = $_POST["name"];
   $password = $_POST["pass"];
 
-  $sql = "SELECT * FROM tbl_user_info WHERE USERNAME = ? AND PASSWORD = ? ";
+  $sql = "SELECT * FROM tbl_user_info WHERE USERNAME = ? AND PASSWORD = ? AND IsActive = 1";
 
   $stmt = $connection->prepare($sql);
 
