@@ -16,6 +16,6 @@ if (isset($_GET["ID"])) {
 
 }
 
-header("location: Admin.php");
+header("location: Admin-List.php");
 exit;
 ?>

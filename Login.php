@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       return;
     }
     if ($row['USERTYPE'] == "admin") {
-      header("location:Admin.php");
+      header("location:Admin-Sidebar.php");
       return;
     }
   }
