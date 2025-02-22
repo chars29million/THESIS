@@ -7,20 +7,75 @@ include("Dash-board.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="Club-styles.css">
-    <link rel="stylesheet" href="hummsstyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="humms-style.css">
     <title></title>
   </head>
   <body>
-    <form action="">
       <div class="humms">
-        <h1>HUMANITIES AND SOCIAL SCIENCES SOCIETY </h1>
+        <h1 class="HEADER">HUMANITIES AND SOCIAL SCIENCES SOCIETY </h1>
       </div>
       <img src="./images/./humms/humms-dp.jpg" class="humms-dp">
 
       <div class="join-btn">
-      <a href=""><button name="join">Join the Club</button></a>
+      <button name="join" id="btn">Join the Club</button></a>
       </div>
+
+      <div class="modal" id="Mymodal">
+
+      <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <form action="Submit">
+
+          <h1 class="Form-header">Please fill out this Form</h1>
+
+            <div class="Submit1">
+              <p class="question">What position you are applying for?</p>
+              <input type="text" placeholder="Position" name="position">
+            </div>
+        
+            <div class="Submit1">
+              <br>
+              <p class="question">What is your strand and section?</p>
+              <input type="text" placeholder="Strand and Section" name="strand-sec">
+            </div>
+            <br><br><br><br><br>
+            
+            <div class="upload">
+              <input type="file" id="file">
+              <label for="file" class="labels"><i class="fa-solid fa-upload"></i>Upload your ID</label>
+            </div>
+            
+            <div class="sbmt">
+              <button type="submit" class="sbmt-file">Submit</button>
+            </div>
+
+        </form>
+      </div>
+    </div>
+
+    <script>
+      var modal = document.getElementById("Mymodal");
+
+      var button = document.getElementById("btn");
+
+      var span = document.getElementsByClassName("close")[0];
+
+      btn.onclick = function(){
+        modal.style.display = "block";
+      }
+
+      span.onclick = function(){
+        modal.style.display = "none";
+      }
+
+      window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
 
       <h2 class="about">About us</h2>
       <p class="description">
@@ -50,9 +105,10 @@ Join us this afternoon of February 3rd! 𝐖𝐞'𝐫𝐞 𝐞𝐱𝐜𝐢𝐭�
 #HUMSSDay2025  
 #HUMSSSociety</p>
     <br>
-    <a href=""><img src="./images/./humms/sample.jpg" class="sample"></a>
+    
+    <img src="./images/./humms/sample.jpg" class="sample" >
     <a href=""><img src="./images/./humms/sample2.jpg" class="sample2"></a>
     <a href=""><img src="./images/./humms/sample3.jpg" class="sample3"></a>
-    </form>
+
   </body>
 </html>

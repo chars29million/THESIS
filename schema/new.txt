@@ -1,0 +1,9 @@
+CREATE TABLE tbl_clubs_info (
+	ID INT PRIMARY KEY AUTO_INCREMENT, 
+    ID_Strand INT NOT NULL,
+    Logo BLOB NOT NULL, 
+    Description VARCHAR(255), 
+    FOREIGN KEY (ID_Strand) REFERENCES tbl_strand_info(ID)
+    ON UPDATE CASCADE
+   )
+   

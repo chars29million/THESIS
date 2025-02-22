@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $successMessage = "Admin added successfully!";
 
-  header("location:Admin.php");
+  header("location:Admin-List.php");
   exit;
 }
 ?>
@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
         <div class="col-sm-3 d-grid">
-          <a class="btn btn-outline-primary" href="Admin.php" role="button">Cancel</a>
+          <a class="btn btn-outline-primary" href="Admin-List.php" role="button">Cancel</a>
         </div>
       </div>
     </form>

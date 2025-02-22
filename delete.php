@@ -13,7 +13,7 @@ include 'DataContext/conn.php';
 
   $stmt->execute();
 
-  header("location: Admin.php");
-  return;
 
+  header("location: Admin-List.php");
+  exit;
 ?>

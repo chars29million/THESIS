@@ -1,0 +1,37 @@
+/*h2{
+  font-size: 35px;
+  text-align: left;
+  margin: 0 0 20px 0;
+}
+
+.list-container{
+  margin: 100px 0 0 350px;
+  
+  background-color: white;
+  width: 60%;
+}
+
+.list-table thead{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: rgb(0, 0, 0);
+}
+
+.list-table td, .list-table th{
+  font-size:19px;
+  
+  padding: 20px 50px 15px 20px;
+}
+
+.btn-add{
+  margin-left: 15px;
+  text-decoration: none;
+  color: black;
+  border: 1px solid rgb(50, 120, 224);
+  padding: 10px 15px 10px 15px;
+}*/
+
+li{
+  text-decoration: none;
+}

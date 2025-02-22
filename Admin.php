@@ -26,16 +26,19 @@ if (!$result) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Admin</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="AdminSidebar-style.css">
 </head>
 
 <body>
-
-  <div class="container my-5">
+  <div class="list-container my-5">
     <h2 class="text-center">List of Admin</h2>
-    <a class="btn btn-primary" href="create.php" role="button">Add Admin</a>
+    <a class="btn btn-outline-primary" href="create.php" role="button">Add Admin</a>
     <br>
-    <table class="table">
+    <table class="table my-3">
       <thead>
         <tr>
           <th>Last Name</th>
@@ -53,8 +56,8 @@ if (!$result) {
             <td><?php echo $row['MiddleName'] ?></td>
             <td><?php echo $row['UserName'] ?></td>
             <td>
-              <a class='btn btn-primary btn-sm' href='edit.php?ID=<?php echo $row['ID'] ?>'>Edit </a>
-              <a class='btn btn-danger btn-sm' href='delete.php?ID=<?php echo $row['ID'] ?>'>Delete</a>
+              <a class='btn btn-outline-success btn-sm' href='edit.php?ID=<?php echo $row['ID'] ?>'>Edit </a>
+              <a class='btn btn-outline-danger btn-sm'  href='delete.php?ID=<?php echo $row['ID'] ?>' onclick="return confirm('Are you sure you want to delete?');" >Delete</a>
             </td>
           </tr>
         <?php } ?>
